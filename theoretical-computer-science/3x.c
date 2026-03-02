@@ -91,6 +91,7 @@ int f_3 (int x) {
         goto EXIT;
 
     // === BEGIN Sum Y with X ===
+    // In this section I simply do y = y + x
     A:
         if (x != 0)
             goto B;
@@ -99,7 +100,7 @@ int f_3 (int x) {
     B:
         x--;
         y++;
-        z2++;
+        z2++; // z2 is used to recover the value of x later
         goto A;
     // === END Sum Y with X ===
 
