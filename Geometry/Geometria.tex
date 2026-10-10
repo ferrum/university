@@ -1,0 +1,384 @@
+\documentclass[11pt,a4paper]{article}
+
+% ==================================================
+% LINGUA E CODIFICA
+% ==================================================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+% ==================================================
+% FONT
+% ==================================================
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ==================================================
+% GEOMETRIA DELLA PAGINA
+% ==================================================
+\usepackage[
+a4paper,
+top=2.2cm,
+bottom=2.2cm,
+left=2.5cm,
+right=2.5cm
+]{geometry}
+
+% ==================================================
+% MATEMATICA
+% ==================================================
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+
+% ==================================================
+% GRAFICA
+% ==================================================
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% ==================================================
+% TABELLE
+% ==================================================
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+
+% ==================================================
+% COLORI
+% ==================================================
+\usepackage{xcolor}
+
+\definecolor{myblue}{RGB}{30,90,160}
+\definecolor{mygreen}{RGB}{40,130,90}
+\definecolor{myred}{RGB}{180,60,60}
+\definecolor{lightgray}{RGB}{245,245,245}
+
+% ==================================================
+% LINK
+% ==================================================
+\usepackage[
+colorlinks=true,
+linkcolor=myblue,
+urlcolor=myblue,
+citecolor=mygreen
+]{hyperref}
+
+% ==================================================
+% HEADER E FOOTER
+% ==================================================
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{\textit{Geometria}}
+\rhead{\textit{Appunti}}
+\cfoot{\thepage}
+
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ==================================================
+% TITOLI DELLE SEZIONI
+% ==================================================
+\usepackage{titlesec}
+
+\titleformat{\section}
+{\Large\bfseries\color{myblue}}
+{\thesection}
+{1em}
+{}
+
+\titleformat{\subsection}
+{\large\bfseries}
+{\thesubsection}
+{1em}
+{}
+
+\titleformat{\subsubsection}
+{\normalsize\bfseries}
+{\thesubsubsection}
+{1em}
+{}
+
+% ==================================================
+% SPAZIATURA
+% ==================================================
+\usepackage{setspace}
+
+\setstretch{1.1}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+% ==================================================
+% LISTE
+% ==================================================
+\usepackage{enumitem}
+
+\setlist[itemize]{
+	itemsep=2pt,
+	topsep=4pt
+}
+
+\setlist[enumerate]{
+	itemsep=2pt,
+	topsep=4pt
+}
+
+% ==================================================
+% BOX
+% ==================================================
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{definitionbox}{
+	colback=blue!4,
+	colframe=myblue,
+	boxrule=0.8pt,
+	arc=2mm,
+	title=Definizione,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{importantbox}{
+	colback=red!4,
+	colframe=myred,
+	boxrule=0.8pt,
+	arc=2mm,
+	title=Importante,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{examplebox}{
+	colback=green!4,
+	colframe=mygreen,
+	boxrule=0.8pt,
+	arc=2mm,
+	title=Esempio,
+	fonttitle=\bfseries
+}
+
+% ==================================================
+% TEOREMI
+% ==================================================
+
+\theoremstyle{plain}
+
+\theoremstyle{remark}
+
+\newtheorem*{remark}{Osservazione}
+
+\theoremstyle{definition}
+\newtheorem{propmanuale}{Proposizione}
+\newenvironment{proposizione}[1]
+{\renewcommand{\thepropmanuale}{#1}\propmanuale}
+{\endpropmanuale}
+
+\theoremstyle{definition}
+\newtheorem{defmanuale}{Definizione}
+\newenvironment{definizione}[1]
+{\renewcommand{\thedefmanuale}{#1}\defmanuale}
+{\enddefmanuale}
+
+\theoremstyle{plain}
+\newtheorem*{teorema}{Teorema}
+
+% ==================================================
+% CODICE
+% ==================================================
+\usepackage{listings}
+
+\lstset{
+	backgroundcolor=\color{lightgray},
+	basicstyle=\ttfamily\small,
+	frame=single,
+	breaklines=true,
+	numbers=left,
+	numberstyle=\tiny,
+	tabsize=4,
+	showstringspaces=false
+}
+
+% ==================================================
+% COMANDI MATEMATICI UTILI
+% ==================================================
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\ii}{\mathrm{i}}
+
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\Span}{span}
+
+% ==================================================
+% DOCUMENTO
+% ==================================================
+
+\begin{document}
+	
+	\begin{center}
+		
+		{\LARGE\bfseries Geometria}
+		
+		\vspace{0.3cm}
+		
+		{\large Appunti}
+		
+		\vspace{0.2cm}
+		
+		Alessandro
+		
+	\end{center}
+	
+	\vspace{0.5cm}
+	
+	\tableofcontents
+	
+	\newpage
+	
+	% ==================================================
+	
+	\section{Introduzione}
+	
+	Questi sono appunti presi dal libro Casali, Gagliardi Grasselli ma in linguaggio più simile ad Algebra Astratta (leggasi: più generale). Essi sono stati redatti al fine di studiare il corso di Geometria I del CdL "Informatica" (L-31) dell'Università di Napoli.
+	
+	\section{Strutture Algebriche}
+	Per struttura algebrica intendiamo una n-pla costituita da insiemi e operazioni su di essi.
+	Un esempio è $(X, \perp)$, dove $X$ è un insieme e $\perp$ è un'operazione binaria interna a $X$.
+	
+	\subsection{Gruppi}
+	Sia $(X, \perp)$ un gruppoide.
+	
+	\begin{enumerate}[label=\roman*)]
+		\item L'operazione $\perp$ è detta associativa se
+		$$\forall x,y,z \in X, (x \perp y) \perp z = z \perp (y \perp z)$$
+		
+		\item L'operazione $\perp$ è detta commutativa se
+		$$ \forall x,y \in X, x \perp y = y \perp x $$
+		
+		\item Un elemento $u \in X$ è detto elemento neutro per l'operazione $\perp$ se
+		$$ \forall x \in X, x \perp u = u \perp x = x $$ 
+		
+		\item Se $(X, \perp)$ ammette elemento neutro $u$, un elemento $x \in X$ è detto invertibile se
+		$$ \exists x' \in X, x \perp x' = x' \perp x = u $$
+	\end{enumerate}
+	
+	\begin{proposizione}{2.3}
+		 \leavevmode\vspace{-0.5\baselineskip}
+		\begin{enumerate}[label=\roman*)]
+			
+			\item Se $(X, \perp)$ ammette elemento neutro, questo è unico
+			
+			\item Se $(X, \perp)$ ammette elemento neutro e $\perp$ è associativa, allora $x \in X$ è invertibile e il suo inverso è unico
+			
+			\item Se $(X, \perp)$ ammette elemento neutro e $\perp$ è associativa e se $x,y \in X$ sono invertibili, allora anche $x \perp y$ è invertibile. Inoltre, detto $(x \perp y)'$ l'inverso di $(x \perp y)$ si ha che $(x \perp y)' = y' \perp x'$
+		\end{enumerate}
+	\end{proposizione}
+	
+	\begin{proof}
+		\leavevmode\vspace{-0.5\baselineskip}
+		\begin{enumerate}[label=\roman*)]
+			
+			\item Siano $u$ e $\bar{u}$ due elementi neutri per $(X, \perp)$. Avremo che:
+			$$ u = u \perp \bar{u} = \bar{u} $$
+			Dunque necessariamente devono coincidere
+			
+			\item Sia $u$ l'elemento neutro di di $(X, \perp)$ e siano $x', x''$ entrambi inversi di $x$
+			$$x' = x \perp u = x' \perp (x \perp x'') = (x' \perp x) \perp x'' = u \perp x'' = x''$$
+			
+			\item Dimostriamo dunque che l'inverso di $(x \perp y)$ esiste ed è $y' \perp x'$. Per dimostrare che $x'$ è inverso di $x$ dobbiamo dimostrare che $x \perp x' = x' \perp x = u$.
+			\\
+			\textit{Lato destro:}
+			$$ (x \perp y) \perp (y' \perp x') = \underbrace{x \perp (y \perp y') \perp x'}_{\text{Associatività}} = x \perp u \perp x' = x \perp x' = u $$
+			\textit{Lato sinistro:}
+			$$(y' \perp x') \perp (x \perp y) = y' \perp (x' \perp x) \perp y = y' \perp u \perp y = y' \perp y = u$$
+		\end{enumerate}
+	\end{proof}
+	
+	\begin{definizione}{2.1}
+		Sia $G$ un insieme e $\perp$ un'operazione binaria interna su G. Diremo che la struttura algebrica $(G, \perp)$ è un gruppo se soddisfa le seguenti proprietà:
+		
+		\begin{enumerate}[label=\roman*)]
+			
+			\item $\perp$ è associativa
+			\item Ammette elemento neutro
+			\item Ogni elemento di G è invertibile
+			
+		\end{enumerate}
+		
+		Un gruppo è detto abeliano (o commutativo) se soddisfa un'ulteriore proprietà:
+		
+		\begin{enumerate}[label=\roman*), start=4]
+			\item $\perp$ è commutativa
+		\end{enumerate}
+		
+	\end{definizione}
+	
+	\subsection{Anelli e campi}
+	
+	\begin{definizione}{2.5 (Anello)}
+		Sia $A$ un insieme e $+$ e $\times$ due operazioni interne su $A$. Diremo che la struttura algebrica $(A, +, \times)$ è un anello se soddisfa le seguenti proprietà:
+		
+		\begin{enumerate}[label=\roman*)]
+			\item $(A, +)$ è un gruppo abeliano
+			\item $\times$ è associativo
+			\item $\times$ è associativo rispetto a $+$, ovverosia:
+			$$x \times (y+z) = (x \times y) + (x \times z)$$
+			\begin{center}
+				e
+			\end{center}
+			$$(y+z)\times x = (y \times x) + (z \times x)$$
+		\end{enumerate}
+		
+		Un anello $(A, +, \times)$ è detto commutativo se $\times$ è commutativo ed è detto unitario se $(A, \times)$ ammette elemento neutro.
+		
+	\end{definizione}
+	
+	\begin{definizione}{2.6 (Campo)}
+		$(K, +, \times)$ è detto campo se è un anello commutativo unitario in cui ogni elemento di $(K, +)$ eccetto l'elemento neutro è invertibile rispetto a $\times$
+		
+		In altre parole:
+		\begin{enumerate}[label=\roman*)]
+			\item $(K, +)$ è un gruppo abeliano
+			\item Sia $u_{+}$ l'elemento neutro di $(K, +)$. Allora $(K - \{ u_{+} \})$ è un gruppo abeliano
+			\item $\times$ è distributivo rispetto a $+$
+		\end{enumerate}
+		
+	\end{definizione}
+	
+	\textbf{Curiosità:} Nella definizione di campo, escludiamo l'elemento neutro di $(K, +)$ dall'imposizione di essere invertibile rispetto a $\times$ perché $u_{+}$ non è invertibile in un anello non banale. Infatti sia $u_{+}'$ l'inverso di $u_{+}$. Dovrebbe valere che $u_{+}' \times u_{+} = u_{\times}$.
+	In realtà accade che $\forall a \in K, a \times u_{+} = u_{+}$
+	
+	\begin{teorema}
+		Sia $(A, +, \times)$ un anello e sia $a \in A$. Sia $(A, +)$ un gruppo con elemento neutro $u_{+}$ e che vale la proprietà distributiva. Allora $a \times u_{+} = u_{+}$.
+		
+		\begin{proof}
+			\begin{align*}
+				&a \times u_{+} \\ &= a \times (u_{+} + u_{+}) \\
+				&= (a \times u_{+}) + (a \times u_{+}) \\
+				& \Rightarrow \\
+				& (a \times u_{+}) - (a \times u_{+}) = ((a \times u_{+}) + (a \times u_{+})) - (a \times u_{+}) \\
+				& \Rightarrow \\
+				& u_{+} = (a \times u_{+}) + ((a \times u_{+}) - (a \times u_{+})) \\
+				& \Rightarrow \\
+				& u_{+} = (a \times u_{+}) + u_{+} \\
+				& u_{+} = (a \times u_{+})
+			\end{align*}
+		\end{proof}
+		
+	\end{teorema}
+	
+\end{document}

@@ -1,0 +1,6 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {section}{\numberline {1}Introduzione}{2}{section.1}%
+\contentsline {section}{\numberline {2}Strutture Algebriche}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Gruppi}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Anelli e campi}{3}{subsection.2.2}%
