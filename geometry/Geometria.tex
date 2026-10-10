@@ -239,7 +239,7 @@ citecolor=mygreen
 		
 		\vspace{0.2cm}
 		
-		Alessandro
+		Alessandro Ferro
 		
 	\end{center}
 	
@@ -253,7 +253,7 @@ citecolor=mygreen
 	
 	\section{Introduzione}
 	
-	Questi sono appunti presi dal libro Casali, Gagliardi Grasselli ma in linguaggio più simile ad Algebra Astratta (leggasi: più generale). Essi sono stati redatti al fine di studiare il corso di Geometria I del CdL "Informatica" (L-31) dell'Università di Napoli.
+	Questi sono appunti presi dal libro "Casali, Gagliardi Grasselli" e scritti in linguaggio più simile ad Algebra Astratta (leggasi: più generale). Essi sono stati redatti al fine di studiare il corso di Geometria I del CdL "Informatica" (L-31) dell'Università di Napoli.
 	
 	\section{Strutture Algebriche}
 	Per struttura algebrica intendiamo una n-pla costituita da insiemi e operazioni su di essi.
@@ -359,7 +359,7 @@ citecolor=mygreen
 		
 	\end{definizione}
 	
-	\textbf{Curiosità:} Nella definizione di campo, escludiamo l'elemento neutro di $(K, +)$ dall'imposizione di essere invertibile rispetto a $\times$ perché $u_{+}$ non è invertibile in un anello non banale. Infatti sia $u_{+}'$ l'inverso di $u_{+}$. Dovrebbe valere che $u_{+}' \times u_{+} = u_{\times}$.
+	\textbf{Osservazione:} Nella definizione di campo, escludiamo l'elemento neutro di $(K, +)$ dall'imposizione di essere invertibile rispetto a $\times$ perché $u_{+}$ non è invertibile in un anello non banale. Infatti sia $u_{+}'$ l'inverso di $u_{+}$. Dovrebbe valere che $u_{+}' \times u_{+} = u_{\times}$.
 	In realtà accade che $\forall a \in K, a \times u_{+} = u_{+}$
 	
 	\begin{teorema}
@@ -369,15 +369,18 @@ citecolor=mygreen
 			\begin{align*}
 				&a \times u_{+} \\ &= a \times (u_{+} + u_{+}) \\
 				&= (a \times u_{+}) + (a \times u_{+}) \\
-				& \Rightarrow \\
-				& (a \times u_{+}) - (a \times u_{+}) = ((a \times u_{+}) + (a \times u_{+})) - (a \times u_{+}) \\
-				& \Rightarrow \\
-				& u_{+} = (a \times u_{+}) + ((a \times u_{+}) - (a \times u_{+})) \\
-				& \Rightarrow \\
-				& u_{+} = (a \times u_{+}) + u_{+} \\
-				& u_{+} = (a \times u_{+})
+				& \Rightarrow
+				 (a \times u_{+}) - (a \times u_{+}) = ((a \times u_{+}) + (a \times u_{+})) - (a \times u_{+}) \\
+				& \Rightarrow
+				 u_{+} = (a \times u_{+}) + ((a \times u_{+}) - (a \times u_{+})) \\
+				& \Rightarrow
+				 u_{+} = (a \times u_{+}) + u_{+} \\
+				& \Rightarrow
+				 u_{+} = (a \times u_{+})
 			\end{align*}
 		\end{proof}
+		
+		Vale anche il contrario, ovvero che $u_{+} \times a = u_{+}$ che si dimostra nello stesso modo
 		
 	\end{teorema}
 	
