@@ -10,5 +10,6 @@ Here's a list of what it's here:
 * Programming Laboratory
 * Networks
 * Theoretical Computer Science
+* Geometry (Linear Algebra)
 
 All contents of this repository are human-generated
