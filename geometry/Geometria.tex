@@ -186,7 +186,10 @@ citecolor=mygreen
 {\enddefmanuale}
 
 \theoremstyle{plain}
-\newtheorem*{teorema}{Teorema}
+\newtheorem{teoremainterno}{Teorema}
+\newenvironment{teorema}[1]
+{\renewcommand{\theteoremainterno}{#1}\begin{teoremainterno}}
+	{\end{teoremainterno}}
 
 % ==================================================
 % CODICE
@@ -335,7 +338,7 @@ citecolor=mygreen
 		\begin{enumerate}[label=\roman*)]
 			\item $(A, +)$ è un gruppo abeliano
 			\item $\times$ è associativo
-			\item $\times$ è associativo rispetto a $+$, ovverosia:
+			\item $\times$ è distributivo rispetto a $+$, ovverosia:
 			$$x \times (y+z) = (x \times y) + (x \times z)$$
 			\begin{center}
 				e
@@ -353,17 +356,22 @@ citecolor=mygreen
 		In altre parole:
 		\begin{enumerate}[label=\roman*)]
 			\item $(K, +)$ è un gruppo abeliano
-			\item Sia $u_{+}$ l'elemento neutro di $(K, +)$. Allora $(K - \{ u_{+} \})$ è un gruppo abeliano
+			\item Sia $u_{+}$ l'elemento neutro di $(K, +)$. Allora $(K - \{ u_{+} \}, \times)$ è un gruppo abeliano
 			\item $\times$ è distributivo rispetto a $+$
 		\end{enumerate}
 		
 	\end{definizione}
 	
+	\textbf{Osservazione:} Notiamo che ad un primo sguardo, le due definizioni non coinciderebbero. Infatti affinché $(K, +, \times)$ sia un anello commutativo unitario servono cinque cose: che $(K, +)$ sia un gruppo abeliano, che $\times$ sia distributivo rispetto a $+$, e che $\times$ sia associativo, commutativo e che abbia elemento neutro su tutto $K$. Le prime due sono i punti \textit{i)} e \textit{iii)}, mentre per quanto riguarda le altre tre, la definizione \textit{ii)} ci dice invece che queste proprietà valgono su $K - \{u_{+}\}$, non su $K$. Come conciliare le due cose? Vediamo: \\
+	\textit{Commutatività su tutto $K$:} Siano $a,b \in K$. Se $a$ e $b$ sono entrambe diverse da $0$, allora vale che $a \times b = b \times a$ grazie al punto \textit{ii)}. Se una delle due è $0$, allora vale che $a \times 0 = 0 \times a = 0$ come verrà dimostrato nel Teorema 1.1 \\
+	\textit{Associatività su tutto $K$:} Siano $a,b,c \in K$. Se sono tutti diversi da $0$ allora vale che $(a \times b) \times c = a \times (b \times c)$ grazie al punto \textit{ii)}. Se almeno uno è $0$ allora $(a \times b) \times c = 0 = a \times (b \times c)$ grazie al risultato che verrà mostrato nel Teorema 1.1\\
+	\textit{Elemento neutro su tutto K:} Sia $u_{\times}$ l'elemento neutro di $(K - \{u_{+}\}, \times)$. Banalmente, è anche elemento neutro di $K$ in quanto basta mostrare che $u_{+} \times u_{\times} = u_{+}$
+	
 	\textbf{Osservazione:} Nella definizione di campo, escludiamo l'elemento neutro di $(K, +)$ dall'imposizione di essere invertibile rispetto a $\times$ perché $u_{+}$ non è invertibile in un anello non banale. Infatti sia $u_{+}'$ l'inverso di $u_{+}$. Dovrebbe valere che $u_{+}' \times u_{+} = u_{\times}$.
 	In realtà accade che $\forall a \in K, a \times u_{+} = u_{+}$
 	
-	\begin{teorema}
-		Sia $(A, +, \times)$ un anello e sia $a \in A$. Sia $(A, +)$ un gruppo con elemento neutro $u_{+}$ e che vale la proprietà distributiva. Allora $a \times u_{+} = u_{+}$.
+	\begin{teorema}{1.1}
+		Sia $(A, +, \times)$ una struttura algebrica e sia $a \in A$. Sia $(A, +)$ un gruppo con elemento neutro $u_{+}$ e che $\times$ sia distributiva su $+$. Allora $a \times u_{+} = u_{+}$.
 		
 		\begin{proof}
 			\begin{align*}
@@ -383,5 +391,70 @@ citecolor=mygreen
 		Vale anche il contrario, ovvero che $u_{+} \times a = u_{+}$ che si dimostra nello stesso modo
 		
 	\end{teorema}
+	
+	\textbf{Osservazione:} Ogni campo ha sempre perlomeno due elementi, ovvero i due elementi neutri delle due operazioni. Questo perché
+	\begin{enumerate}[label=\roman*)]
+		\item $(K, +)$ è un gruppo abeliano, dunque ammette elemento neutro $u_{+}$
+		\item $(K - \{u_{+}\}, \times)$ è un gruppo abeliano, dunque ammette elemento neutro, che sarà necessariamente diverso da $u_{+}$ in quanto escluso dall'insieme
+	\end{enumerate}
+	
+	D'ora in poi $u_{+}$ verrà indicato anche con $0$ e $u_{\times}$ verrà indicato anche con $1$ per allinearli agli elementi neutri dell'esempio classico di campo: $(\mathbb{R}, +, \cdot)$
+	
+	\begin{definizione}{2.9}
+		Sia $(A, +, \cdot)$ un anello. Se $a,b \in A - \{0\}$ e $a \cdot b = 0$ si dice che $a$ e $b$ sono divisori dello zero
+	\end{definizione}
+	
+	
+	\textbf{Osservazione 2.10}
+	La mancanza di divisori dello zero nell'anello $A$ equivale alla seguente proprietà, nota come "legge di annullamento del prodotto":
+	$$\forall a,b \in A, a \cdot b = 0\Rightarrow a = 0 \text{ oppure } b=0$$
+	
+	\begin{proposizione}{2.11}
+		Ogni campo è privo di divisori dello zero
+		\begin{proof}
+			Sia $(K, +, \cdot)$ un campo e siano $a,b \in K$ tali che $a \cdot b = 0$. Se $a \neq 0$ allora:
+			$$b = (a^{-1} \cdot a) \cdot b = a^{-1} \cdot (a \cdot b) = a^{-1} \cdot 0 = 0$$
+			In altre parole abbiamo dimostrato che se uno degli elementi è diverso da $0$, allora l'altro deve necessariamente essere uguale a $0$. \textit{(Nota: $a^{-1}$ è l'inverso di $a$ per $(K, \cdot)$)}
+		\end{proof}
+	\end{proposizione}
+	
+	\newpage
+	\section{Spazi e sottospazi vettoriali}
+	\subsection{Spazi vettoriali}
+	Sia V un insieme e $(K, +, \cdot)$ un campo. 
+	\begin{definizione}{4.1}
+		Diremo spazio vettoriale su K una struttura algebrica $(K, V, \boxplus, \boxdot)$ costituita da un campo $K$ i cui elementi sono detti scalari e da un insieme $V$ i cui elementi sono detti vettori, da un'operazione binaria interna su V detta "somma di vettori":
+		$$\boxplus: V \times V \rightarrow V$$
+		e da un'operazione detta "prodotto di uno scalare per un vettore":
+		$$\boxdot: K \times V \rightarrow V$$
+		
+		Inoltre deve soddisfare questi assiomi $\forall \alpha, \beta \in K, \forall v, w \in V$:
+		\begin{enumerate}
+			\item $(V, \boxplus)$ è un gruppo abeliano
+			\item $(\alpha + \beta) \boxdot v = (\alpha \boxdot v) \boxplus (\beta \boxdot v)$
+			\item $\alpha \boxdot (v \boxplus w) = (\alpha \boxdot v) \boxplus (\alpha \boxdot w)$
+			\item $\alpha \boxdot (\beta \boxdot v) = (\alpha \cdot \beta) \boxdot v$
+			\item $1 \boxdot v = v$
+		\end{enumerate}
+	\end{definizione}
+	
+	L'insieme $V$ è detto sostegno dello spazio vettoriale. Inoltre, per leggerezza di notazione, $\boxdot \text{ e } \boxplus$ verranno d'ora in poi indicati con gli stessi simboli che denotano le operazioni in $K$, ovvero, rispettivamente, $\cdot \text{ e } +$. Tale abuso di notazione non sarà ambiguo perché sarà possibile capire il vero tipo di operazione dal tipo di operandi a cui è applicata.
+	Inoltre, sempre per leggerezza di notazione, indicheremo uno spazio vettoriale con il solo nome del suo sostegno.
+	
+	\begin{proposizione}{4.2}
+		Sia $V$ uno spazio vettoriale sul campo $K$. Sia $0_{\boxplus}$ l'elemento neutro in $(V, \boxplus)$. Per ogni $\alpha, \beta \in K, \forall v,u \in V$ si ha:
+		\begin{enumerate}
+			\item $\alpha v = 0_{\boxplus} \iff \alpha = 0 \text{ oppure } v = 0_{\boxplus}$
+			\item $(-\alpha)v = \alpha(-v) = -(\alpha v)$
+			\item Se $\alpha v = \beta v \text{ e } v \neq 0 \Rightarrow \alpha = \beta$
+			\item $\alpha u = \alpha v \text{ e } \alpha \neq 0 \Rightarrow u = v$
+		\end{enumerate}
+		\begin{proof}
+			\begin{enumerate}
+				\item
+				$\Leftarrow$
+			\end{enumerate}
+		\end{proof}
+	\end{proposizione}
 	
 \end{document}
