@@ -57,7 +57,6 @@ right=2.5cm
 \definecolor{myblue}{RGB}{30,90,160}
 \definecolor{mygreen}{RGB}{40,130,90}
 \definecolor{myred}{RGB}{180,60,60}
-\definecolor{lightgray}{RGB}{245,245,245}
 
 % ==================================================
 % LINK
@@ -132,80 +131,46 @@ citecolor=mygreen
 }
 
 % ==================================================
-% BOX
+% AMBIENTI (definizioni, teoremi, osservazioni, ...)
 % ==================================================
-\usepackage[most]{tcolorbox}
+% La numerazione e' quella del manuale, quindi si scrive a mano come
+% argomento opzionale. La sintassi e' la stessa per tutti gli ambienti:
+%
+%   \begin{definizione}[2.5 (Anello)]  ->  Definizione 2.5 (Anello).
+%   \begin{teorema}[1.1]               ->  Teorema 1.1.
+%   \begin{osservazione}               ->  Osservazione.
+%
+% Per aggiungere un ambiente basta una riga in fondo all'elenco.
 
-\newtcolorbox{definitionbox}{
-	colback=blue!4,
-	colframe=myblue,
-	boxrule=0.8pt,
-	arc=2mm,
-	title=Definizione,
-	fonttitle=\bfseries
-}
+% intestazione in grassetto, corpo in tondo
+\newtheoremstyle{manuale}
+{}                           % spazio sopra (vuoto = predefinito)
+{}                           % spazio sotto
+{\normalfont}                % font del corpo
+{}                           % rientro della prima riga
+{\bfseries}                  % font dell'intestazione
+{.}                          % punteggiatura dopo l'intestazione
+{5pt plus 1pt minus 1pt}     % spazio dopo l'intestazione
+{\thmname{#1}\thmnote{ #3}}  % intestazione: nome + numero del manuale
 
-\newtcolorbox{importantbox}{
-	colback=red!4,
-	colframe=myred,
-	boxrule=0.8pt,
-	arc=2mm,
-	title=Importante,
-	fonttitle=\bfseries
-}
+% come sopra, ma con il corpo in corsivo
+\newtheoremstyle{manualecorsivo}
+{}
+{}
+{\itshape}
+{}
+{\bfseries}
+{.}
+{5pt plus 1pt minus 1pt}
+{\thmname{#1}\thmnote{ #3}}
 
-\newtcolorbox{examplebox}{
-	colback=green!4,
-	colframe=mygreen,
-	boxrule=0.8pt,
-	arc=2mm,
-	title=Esempio,
-	fonttitle=\bfseries
-}
+\theoremstyle{manuale}
+\newtheorem*{definizione}{Definizione}
+\newtheorem*{proposizione}{Proposizione}
+\newtheorem*{osservazione}{Osservazione}
 
-% ==================================================
-% TEOREMI
-% ==================================================
-
-\theoremstyle{plain}
-
-\theoremstyle{remark}
-
-\newtheorem*{remark}{Osservazione}
-
-\theoremstyle{definition}
-\newtheorem{propmanuale}{Proposizione}
-\newenvironment{proposizione}[1]
-{\renewcommand{\thepropmanuale}{#1}\propmanuale}
-{\endpropmanuale}
-
-\theoremstyle{definition}
-\newtheorem{defmanuale}{Definizione}
-\newenvironment{definizione}[1]
-{\renewcommand{\thedefmanuale}{#1}\defmanuale}
-{\enddefmanuale}
-
-\theoremstyle{plain}
-\newtheorem{teoremainterno}{Teorema}
-\newenvironment{teorema}[1]
-{\renewcommand{\theteoremainterno}{#1}\begin{teoremainterno}}
-	{\end{teoremainterno}}
-
-% ==================================================
-% CODICE
-% ==================================================
-\usepackage{listings}
-
-\lstset{
-	backgroundcolor=\color{lightgray},
-	basicstyle=\ttfamily\small,
-	frame=single,
-	breaklines=true,
-	numbers=left,
-	numberstyle=\tiny,
-	tabsize=4,
-	showstringspaces=false
-}
+\theoremstyle{manualecorsivo}
+\newtheorem*{teorema}{Teorema}
 
 % ==================================================
 % COMANDI MATEMATICI UTILI
@@ -220,6 +185,7 @@ citecolor=mygreen
 \newcommand{\dd}{\,\mathrm{d}}
 \newcommand{\e}{\mathrm{e}}
 \newcommand{\ii}{\mathrm{i}}
+\newcommand{\motivo}[1]{\tag*{\textit{#1}}}
 
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\Ker}{Ker}
@@ -277,7 +243,7 @@ citecolor=mygreen
 		$$ \exists x' \in X, x \perp x' = x' \perp x = u $$
 	\end{enumerate}
 	
-	\begin{proposizione}{2.3}
+	\begin{proposizione}[2.3]
 		 \leavevmode\vspace{-0.5\baselineskip}
 		\begin{enumerate}[label=\roman*)]
 			
@@ -309,7 +275,7 @@ citecolor=mygreen
 		\end{enumerate}
 	\end{proof}
 	
-	\begin{definizione}{2.1}
+	\begin{definizione}[2.1]
 		Sia $G$ un insieme e $\perp$ un'operazione binaria interna su G. Diremo che la struttura algebrica $(G, \perp)$ è un gruppo se soddisfa le seguenti proprietà:
 		
 		\begin{enumerate}[label=\roman*)]
@@ -330,7 +296,7 @@ citecolor=mygreen
 	
 	\subsection{Anelli e campi}
 	
-	\begin{definizione}{2.5 (Anello)}
+	\begin{definizione}[2.5 (Anello)]
 		Sia $A$ un insieme e $+$ e $\times$ due operazioni interne su $A$. Diremo che la struttura algebrica $(A, +, \times)$ è un anello se soddisfa le seguenti proprietà:
 		
 		\begin{enumerate}[label=\roman*)]
@@ -348,7 +314,7 @@ citecolor=mygreen
 		
 	\end{definizione}
 	
-	\begin{definizione}{2.6 (Campo)}
+	\begin{definizione}[2.6 (Campo)]
 		$(K, +, \times)$ è detto campo se è un anello commutativo unitario in cui ogni elemento di $(K, +)$ eccetto l'elemento neutro è invertibile rispetto a $\times$
 		
 		In altre parole:
@@ -360,15 +326,19 @@ citecolor=mygreen
 		
 	\end{definizione}
 	
-	\textbf{Osservazione:} Notiamo che ad un primo sguardo, le due definizioni non coinciderebbero. Infatti affinché $(K, +, \times)$ sia un anello commutativo unitario servono cinque cose: che $(K, +)$ sia un gruppo abeliano, che $\times$ sia distributivo rispetto a $+$, e che $\times$ sia associativo, commutativo e che abbia elemento neutro su tutto $K$. Le prime due sono i punti \textit{i)} e \textit{iii)}, mentre per quanto riguarda le altre tre, la definizione \textit{ii)} ci dice invece che queste proprietà valgono su $K - \{u_{+}\}$, non su $K$. Come conciliare le due cose? Vediamo: \\
-	\textit{Commutatività su tutto $K$:} Siano $a,b \in K$. Se $a$ e $b$ sono entrambe diverse da $0$, allora vale che $a \times b = b \times a$ grazie al punto \textit{ii)}. Se una delle due è $0$, allora vale che $a \times 0 = 0 \times a = 0$ come verrà dimostrato nel Teorema 1.1 \\
-	\textit{Associatività su tutto $K$:} Siano $a,b,c \in K$. Se sono tutti diversi da $0$ allora vale che $(a \times b) \times c = a \times (b \times c)$ grazie al punto \textit{ii)}. Se almeno uno è $0$ allora $(a \times b) \times c = 0 = a \times (b \times c)$ grazie al risultato che verrà mostrato nel Teorema 1.1\\
-	\textit{Elemento neutro su tutto K:} Sia $u_{\times}$ l'elemento neutro di $(K - \{u_{+}\}, \times)$. Banalmente, è anche elemento neutro di $K$ in quanto basta mostrare che $u_{+} \times u_{\times} = u_{+}$
+	\begin{osservazione}
+		Notiamo che ad un primo sguardo, le due definizioni non coinciderebbero. Infatti affinché $(K, +, \times)$ sia un anello commutativo unitario servono cinque cose: che $(K, +)$ sia un gruppo abeliano, che $\times$ sia distributivo rispetto a $+$, e che $\times$ sia associativo, commutativo e che abbia elemento neutro su tutto $K$. Le prime due sono i punti \textit{i)} e \textit{iii)}, mentre per quanto riguarda le altre tre, la definizione \textit{ii)} ci dice invece che queste proprietà valgono su $K - \{u_{+}\}$, non su $K$. Come conciliare le due cose? Vediamo: \\
+		\textit{Commutatività su tutto $K$:} Siano $a,b \in K$. Se $a$ e $b$ sono entrambe diverse da $0$, allora vale che $a \times b = b \times a$ grazie al punto \textit{ii)}. Se una delle due è $0$, allora vale che $a \times 0 = 0 \times a = 0$ come verrà dimostrato nel Teorema 1.1 \\
+		\textit{Associatività su tutto $K$:} Siano $a,b,c \in K$. Se sono tutti diversi da $0$ allora vale che $(a \times b) \times c = a \times (b \times c)$ grazie al punto \textit{ii)}. Se almeno uno è $0$ allora $(a \times b) \times c = 0 = a \times (b \times c)$ grazie al risultato che verrà mostrato nel Teorema 1.1\\
+		\textit{Elemento neutro su tutto K:} Sia $u_{\times}$ l'elemento neutro di $(K - \{u_{+}\}, \times)$. Banalmente, è anche elemento neutro di $K$ in quanto basta mostrare che $u_{+} \times u_{\times} = u_{+}$
+	\end{osservazione}
 	
-	\textbf{Osservazione:} Nella definizione di campo, escludiamo l'elemento neutro di $(K, +)$ dall'imposizione di essere invertibile rispetto a $\times$ perché $u_{+}$ non è invertibile in un anello non banale. Infatti sia $u_{+}'$ l'inverso di $u_{+}$. Dovrebbe valere che $u_{+}' \times u_{+} = u_{\times}$.
-	In realtà accade che $\forall a \in K, a \times u_{+} = u_{+}$
+	\begin{osservazione}
+		Nella definizione di campo, escludiamo l'elemento neutro di $(K, +)$ dall'imposizione di essere invertibile rispetto a $\times$ perché $u_{+}$ non è invertibile in un anello non banale. Infatti sia $u_{+}'$ l'inverso di $u_{+}$. Dovrebbe valere che $u_{+}' \times u_{+} = u_{\times}$.
+		In realtà accade che $\forall a \in K, a \times u_{+} = u_{+}$
+	\end{osservazione}
 	
-	\begin{teorema}{1.1}
+	\begin{teorema}[1.1]
 		Sia $(A, +, \times)$ una struttura algebrica e sia $a \in A$. Sia $(A, +)$ un gruppo con elemento neutro $u_{+}$ e che $\times$ sia distributiva su $+$. Allora $a \times u_{+} = u_{+}$.
 		
 		\begin{proof}
@@ -390,24 +360,27 @@ citecolor=mygreen
 		
 	\end{teorema}
 	
-	\textbf{Osservazione:} Ogni campo ha sempre perlomeno due elementi, ovvero i due elementi neutri delle due operazioni. Questo perché
-	\begin{enumerate}[label=\roman*)]
-		\item $(K, +)$ è un gruppo abeliano, dunque ammette elemento neutro $u_{+}$
-		\item $(K - \{u_{+}\}, \times)$ è un gruppo abeliano, dunque ammette elemento neutro, che sarà necessariamente diverso da $u_{+}$ in quanto escluso dall'insieme
-	\end{enumerate}
+	\begin{osservazione}
+		Ogni campo ha sempre perlomeno due elementi, ovvero i due elementi neutri delle due operazioni. Questo perché
+		\begin{enumerate}[label=\roman*)]
+			\item $(K, +)$ è un gruppo abeliano, dunque ammette elemento neutro $u_{+}$
+			\item $(K - \{u_{+}\}, \times)$ è un gruppo abeliano, dunque ammette elemento neutro, che sarà necessariamente diverso da $u_{+}$ in quanto escluso dall'insieme
+		\end{enumerate}
+	\end{osservazione}
 	
 	D'ora in poi $u_{+}$ verrà indicato anche con $0$ e $u_{\times}$ verrà indicato anche con $1$ per allinearli agli elementi neutri dell'esempio classico di campo: $(\mathbb{R}, +, \cdot)$
 	
-	\begin{definizione}{2.9}
+	\begin{definizione}[2.9]
 		Sia $(A, +, \cdot)$ un anello. Se $a,b \in A - \{0\}$ e $a \cdot b = 0$ si dice che $a$ e $b$ sono divisori dello zero
 	\end{definizione}
 	
 	
-	\textbf{Osservazione 2.10}
-	La mancanza di divisori dello zero nell'anello $A$ equivale alla seguente proprietà, nota come "legge di annullamento del prodotto":
-	$$\forall a,b \in A, a \cdot b = 0\Rightarrow a = 0 \text{ oppure } b=0$$
+	\begin{osservazione}[2.10]
+		La mancanza di divisori dello zero nell'anello $A$ equivale alla seguente proprietà, nota come "legge di annullamento del prodotto":
+		$$\forall a,b \in A, a \cdot b = 0\Rightarrow a = 0 \text{ oppure } b=0$$
+	\end{osservazione}
 	
-	\begin{proposizione}{2.11}
+	\begin{proposizione}[2.11]
 		Ogni campo è privo di divisori dello zero
 		\begin{proof}
 			Sia $(K, +, \cdot)$ un campo e siano $a,b \in K$ tali che $a \cdot b = 0$. Se $a \neq 0$ allora:
@@ -419,12 +392,13 @@ citecolor=mygreen
 	\newpage
 	\section{Spazi e sottospazi vettoriali}
 	\subsection{Spazi vettoriali}
-	Sia V un insieme e $(K, +, \cdot)$ un campo. 
-	\begin{definizione}{4.1}
-		Diremo spazio vettoriale su K una struttura algebrica $(K, V, \boxplus, \boxdot)$ costituita da un campo $K$ i cui elementi sono detti scalari e da un insieme $V$ i cui elementi sono detti vettori, da un'operazione binaria interna su V detta "somma di vettori":
+	\begin{definizione}[4.1]
+		Diremo spazio vettoriale su K una struttura algebrica $$\big((K,+,\cdot),\ (V,\boxplus),\ \boxdot\big)$$ costituita da un campo $(K,+,\cdot)$, da un insieme $V$, da un'operazione binaria interna su V detta "somma di vettori":
 		$$\boxplus: V \times V \rightarrow V$$
 		e da un'operazione detta "prodotto di uno scalare per un vettore":
 		$$\boxdot: K \times V \rightarrow V$$
+		
+		\textit{(Gli elementi di $K$ sono detti scalari, quelli di $V$ vettori)}
 		
 		Inoltre deve soddisfare questi assiomi $\forall \alpha, \beta \in K, \forall v, w \in V$:
 		\begin{enumerate}
@@ -439,8 +413,8 @@ citecolor=mygreen
 	L'insieme $V$ è detto sostegno dello spazio vettoriale. Inoltre, per leggerezza di notazione, $\boxdot \text{ e } \boxplus$ verranno d'ora in poi indicati con gli stessi simboli che denotano le operazioni in $K$, ovvero, rispettivamente, $\cdot \text{ e } +$. Tale abuso di notazione non sarà ambiguo perché sarà possibile capire il vero tipo di operazione dal tipo di operandi a cui è applicata.
 	Inoltre, sempre per leggerezza di notazione, indicheremo uno spazio vettoriale con il solo nome del suo sostegno.
 	
-	\begin{proposizione}{4.2}
-		Sia $V$ uno spazio vettoriale sul campo $K$. Sia $0_{v}$ l'elemento neutro in $(V, \boxplus)$. Per ogni $\alpha, \beta \in K, \forall v,u \in V$ si ha:
+	\begin{proposizione}[4.2]
+		Sia $V$ uno spazio vettoriale sul campo $K$. Sia $0_{v}$ l'elemento neutro in $(V, \boxplus)$ e $0$ l'elemento neutro in $(K, +)$. Per ogni $\alpha, \beta \in K, \forall v,u \in V$ si ha:
 		\begin{enumerate}
 			\item $\alpha v = 0_{v} \iff \alpha = 0 \text{ oppure } v = 0_{v}$
 			\item $(-\alpha)v = \alpha(-v) = -(\alpha v)$
@@ -448,9 +422,27 @@ citecolor=mygreen
 			\item $\alpha u = \alpha v \text{ e } \alpha \neq 0 \Rightarrow u = v$
 		\end{enumerate}
 		\begin{proof}
+			\leavevmode\vspace{-0.5\baselineskip}
 			\begin{enumerate}
-				\item
-				$\Leftarrow$
+				\item \textbf{($\Leftarrow$)} \\
+				Prima dimostriamo che $0 \boxdot v = 0_v$ \\
+				\begin{align*}
+					&v \\
+					& = 1 \boxdot v \motivo{Assioma 5 degli spazi vettoriali} \\
+					& = (1+0) \boxdot v \motivo{$0$ è l'elemento neutro per $(K,+)$} \\
+					& = (1 \boxdot v) \boxplus (0 \boxdot v) \motivo{Assioma 2 degli spazi vettoriali} \\
+					& = (0 \boxdot v) \boxplus (1 \boxdot v) \motivo{$(V,\boxplus)$ è un gruppo abeliano}
+				\end{align*}
+				Ciò implica che $v = v \boxplus (0 \boxdot v) = (0 \boxdot v) \boxplus v $. Pertanto $0 \boxdot v $  rispetta la definizione di elemento neutro per $(V, \boxplus)$, che indicheremo con $0_v$\\
+				Adesso dimostriamo che $\alpha \boxdot 0_v = 0_v$ \\
+				\begin{align*}
+					&\alpha \boxdot v \\
+					& = \alpha \boxdot (v \boxplus 0_v) \motivo{Dimostrato prima che $0_v$ è el. neut.} \\
+					& = (\alpha \boxdot v) \boxplus (\alpha \boxdot 0_v) \motivo{Assioma 3 spazi vettoriali} \\
+					& = (\alpha \boxdot 0_v) \boxplus (\alpha \boxdot v)  \motivo{$(V,\boxplus)$ è un gruppo abeliano}
+				\end{align*}
+				Ciò implica che $\alpha \boxdot v = (\alpha \boxdot v) \boxplus (\alpha \boxdot 0_v) = (\alpha \boxdot 0_v) \boxplus (\alpha \boxdot v) $. Pertanto $\alpha \boxdot 0_v$ rispetta la definizione di elemento neutro per $(V, \boxplus)$ che indicheremo con $0_v$ \\
+				\textbf{($\Rightarrow$)}
 			\end{enumerate}
 		\end{proof}
 	\end{proposizione}
