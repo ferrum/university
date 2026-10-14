@@ -441,8 +441,12 @@ citecolor=mygreen
 					& = (\alpha \boxdot v) \boxplus (\alpha \boxdot 0_v) \motivo{Assioma 3 spazi vettoriali} \\
 					& = (\alpha \boxdot 0_v) \boxplus (\alpha \boxdot v)  \motivo{$(V,\boxplus)$ è un gruppo abeliano}
 				\end{align*}
-				Ciò implica che $\alpha \boxdot v = (\alpha \boxdot v) \boxplus (\alpha \boxdot 0_v) = (\alpha \boxdot 0_v) \boxplus (\alpha \boxdot v) $. Pertanto $\alpha \boxdot 0_v$ rispetta la definizione di elemento neutro per $(V, \boxplus)$ che indicheremo con $0_v$ \\
-				\textbf{($\Rightarrow$)}
+				Ciò implica che $\alpha \boxdot v = (\alpha \boxdot v) \boxplus (\alpha \boxdot 0_v) = (\alpha \boxdot 0_v) \boxplus (\alpha \boxdot v) $. Pertanto $\alpha \boxdot 0_v$ rispetta la definizione di elemento neutro per $(V, \boxplus)$, dunque equivale a $0_v$ \\
+				\textbf{($\Rightarrow$)}\\
+				Dunque dimostriamo che $\alpha \boxdot v = 0_v$ implica che $\alpha = 0$ oppure $v = 0_v$
+				\begin{itemize}
+					\item Se $\alpha \neq 0$ allora si ha che $v = 1 \boxdot  v = \underbrace{(\alpha^{-1} \cdot \alpha) \boxdot v = \alpha^{-1} \boxdot (\alpha \boxdot v)}_{\text{Assioma 4}}  = \alpha^{-1} \boxdot 0_v = 0_v$
+				\end{itemize}
 			\end{enumerate}
 		\end{proof}
 	\end{proposizione}
