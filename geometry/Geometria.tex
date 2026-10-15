@@ -416,10 +416,10 @@ citecolor=mygreen
 	\begin{proposizione}[4.2]
 		Sia $V$ uno spazio vettoriale sul campo $K$. Sia $0_{v}$ l'elemento neutro in $(V, \boxplus)$ e $0$ l'elemento neutro in $(K, +)$. Per ogni $\alpha, \beta \in K, \forall v,u \in V$ si ha:
 		\begin{enumerate}
-			\item $\alpha v = 0_{v} \iff \alpha = 0 \text{ oppure } v = 0_{v}$
-			\item $(-\alpha)v = \alpha(-v) = -(\alpha v)$
-			\item Se $\alpha v = \beta v \text{ e } v \neq 0 \Rightarrow \alpha = \beta$
-			\item $\alpha u = \alpha v \text{ e } \alpha \neq 0 \Rightarrow u = v$
+			\item $\alpha \boxdot v = 0_{v} \iff \alpha = 0 \text{ oppure } v = 0_{v}$
+			\item $(-\alpha) \boxdot v = \alpha \boxdot (-v) = -(\alpha \boxdot v)$
+			\item Se $\alpha \boxdot v = \beta \boxdot v \text{ e } v \neq 0 \Rightarrow \alpha = \beta$
+			\item $\alpha \boxdot u = \alpha \boxdot v \text{ e } \alpha \neq 0 \Rightarrow u = v$
 		\end{enumerate}
 		\begin{proof}
 			\leavevmode\vspace{-0.5\baselineskip}
@@ -443,11 +443,16 @@ citecolor=mygreen
 				\end{align*}
 				Ciò implica che $\alpha \boxdot v = (\alpha \boxdot v) \boxplus (\alpha \boxdot 0_v) = (\alpha \boxdot 0_v) \boxplus (\alpha \boxdot v) $. Pertanto $\alpha \boxdot 0_v$ rispetta la definizione di elemento neutro per $(V, \boxplus)$, dunque equivale a $0_v$ \\
 				\textbf{($\Rightarrow$)}\\
-				Dunque dimostriamo che $\alpha \boxdot v = 0_v$ implica che $\alpha = 0$ oppure $v = 0_v$
+				Dunque dimostriamo che $\alpha \boxdot v = 0_v$ implica che $\alpha = 0$ oppure $v = 0_v$. Per farlo notiamo che $K \Rightarrow (P \lor Q)$ è equivalente a dimostrare $K \Rightarrow (\neg P \Rightarrow Q) $. Quindi basta dimostrare che $\alpha \neq 0 \Rightarrow v = 0_v$: \\
+ 				Se $\alpha \neq 0$ allora si ha che $v = 1 \boxdot  v = \underbrace{(\alpha^{-1} \cdot \alpha) \boxdot v = \alpha^{-1} \boxdot (\alpha \boxdot v)}_{\text{Assioma 4}}  = \alpha^{-1} \boxdot 0_v = 0_v$ \\
+				
+				\item 
+				
 				\begin{itemize}
-					\item Se $\alpha \neq 0$ allora si ha che $v = 1 \boxdot  v = \underbrace{(\alpha^{-1} \cdot \alpha) \boxdot v = \alpha^{-1} \boxdot (\alpha \boxdot v)}_{\text{Assioma 4}}  = \alpha^{-1} \boxdot 0_v = 0_v$
-					\item Se 
+					\item Dimostriamo che l'inverso di  $(\alpha v)$ è $(- \alpha) v$ \\
+					
 				\end{itemize}
+				
 			\end{enumerate}
 		\end{proof}
 	\end{proposizione}
