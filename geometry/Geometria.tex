@@ -433,12 +433,12 @@ citecolor=mygreen
 					& = (1 \boxdot v) \boxplus (0 \boxdot v) \motivo{Assioma 2 degli spazi vettoriali} \\
 					& = (0 \boxdot v) \boxplus (1 \boxdot v) \motivo{$(V,\boxplus)$ è un gruppo abeliano}
 				\end{align*}
-				Ciò implica che $v = v \boxplus (0 \boxdot v) = (0 \boxdot v) \boxplus v $. Pertanto $0 \boxdot v $  rispetta la definizione di elemento neutro per $(V, \boxplus)$, che indicheremo con $0_v$\\
+				Ciò implica che $v = v \boxplus (0 \boxdot v) = (0 \boxdot v) \boxplus v $. Pertanto $0 \boxdot v $  rispetta la definizione di elemento neutro per $(V, \boxplus)$, dunque è $0_v$\\
 				Adesso dimostriamo che $\alpha \boxdot 0_v = 0_v$ \\
 				\begin{align*}
 					&\alpha \boxdot v \\
-					& = \alpha \boxdot (v \boxplus 0_v) \motivo{Dimostrato prima che $0_v$ è el. neut.} \\
-					& = (\alpha \boxdot v) \boxplus (\alpha \boxdot 0_v) \motivo{Assioma 3 spazi vettoriali} \\
+					& = \alpha \boxdot (v \boxplus 0_v) \motivo{$0_v$ è elemento neutro per def.} \\
+					& = (\alpha \boxdot v) \boxplus (\alpha \boxdot 0_v) \motivo{Assioma 3 degli spazi vettoriali} \\
 					& = (\alpha \boxdot 0_v) \boxplus (\alpha \boxdot v)  \motivo{$(V,\boxplus)$ è un gruppo abeliano}
 				\end{align*}
 				Ciò implica che $\alpha \boxdot v = (\alpha \boxdot v) \boxplus (\alpha \boxdot 0_v) = (\alpha \boxdot 0_v) \boxplus (\alpha \boxdot v) $. Pertanto $\alpha \boxdot 0_v$ rispetta la definizione di elemento neutro per $(V, \boxplus)$, dunque equivale a $0_v$ \\
@@ -446,6 +446,7 @@ citecolor=mygreen
 				Dunque dimostriamo che $\alpha \boxdot v = 0_v$ implica che $\alpha = 0$ oppure $v = 0_v$
 				\begin{itemize}
 					\item Se $\alpha \neq 0$ allora si ha che $v = 1 \boxdot  v = \underbrace{(\alpha^{-1} \cdot \alpha) \boxdot v = \alpha^{-1} \boxdot (\alpha \boxdot v)}_{\text{Assioma 4}}  = \alpha^{-1} \boxdot 0_v = 0_v$
+					\item Se 
 				\end{itemize}
 			\end{enumerate}
 		\end{proof}
