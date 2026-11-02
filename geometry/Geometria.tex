@@ -410,12 +410,12 @@ citecolor=mygreen
 		\end{enumerate}
 	\end{definizione}
 	
-	L'insieme $V$ è detto sostegno dello spazio vettoriale. Inoltre, per leggerezza di notazione, $\boxdot \text{ e } \boxplus$ verranno d'ora in poi indicati con gli stessi simboli che denotano le operazioni in $K$, ovvero, rispettivamente, $\cdot \text{ e } +$. Tale abuso di notazione non sarà ambiguo perché sarà possibile capire il vero tipo di operazione dal tipo di operandi a cui è applicata.
+	L'insieme $V$ è detto sostegno dello spazio vettoriale. Inoltre, per leggerezza di notazione, $\boxdot \text{ e } \boxplus$ verranno d'ora in poi talvolta indicati con gli stessi simboli che denotano le operazioni in $K$, ovvero, rispettivamente, $\cdot \text{ e } +$. Tale abuso di notazione non sarà ambiguo perché sarà possibile capire il vero tipo di operazione dal tipo di operandi a cui è applicata. In tal caso lo spazio vettoriale verrà scritto come $(K,V,+,\cdot)$. \\
 	Inoltre, sempre per leggerezza di notazione, indicheremo uno spazio vettoriale con il solo nome del suo sostegno.
 	
 	\begin{proposizione}[4.2]
 		Sia $V$ uno spazio vettoriale sul campo $K$. Sia $0_{v}$ l'elemento neutro in $(V, \boxplus)$ e $0$ l'elemento neutro in $(K, +)$. Per ogni $\alpha, \beta \in K, \forall v,u \in V$ si ha:
-		\begin{enumerate}
+		\begin{enumerate}[label=\roman*)]
 			\item $\alpha \boxdot v = 0_{v} \iff \alpha = 0 \text{ oppure } v = 0_{v}$
 			\item $(-\alpha) \boxdot v = \alpha \boxdot (-v) = -(\alpha \boxdot v)$
 			\item Se $\alpha \boxdot v = \beta \boxdot v \text{ e } v \neq 0 \Rightarrow \alpha = \beta$
@@ -423,7 +423,7 @@ citecolor=mygreen
 		\end{enumerate}
 		\begin{proof}
 			\leavevmode\vspace{-0.5\baselineskip}
-			\begin{enumerate}
+			\begin{enumerate}[label=\roman*)]
 				\item \textbf{($\Leftarrow$)} \\
 				Prima dimostriamo che $0 \boxdot v = 0_v$ \\
 				\begin{align*}
@@ -449,12 +449,68 @@ citecolor=mygreen
 				\item 
 				
 				\begin{itemize}
-					\item Dimostriamo che l'inverso di  $(\alpha v)$ è $(- \alpha) v$ \\
 					
+					\item Dimostriamo che l'inverso di  $(\alpha \boxdot v)$ è $(- \alpha) \boxdot v$ in $(V, \boxplus)$ \\
+					\begin{align*}
+						& (\alpha \boxdot v) \boxplus \boldsymbol{((- \alpha) \boxdot v)}	 \\
+						& = (\alpha + (- \alpha)) \boxdot v \motivo{Assioma 3 degli spazi vettoriali} \\
+						& = 0 \boxdot v \\
+						& = 0_v \motivo{Dimostrato prima}
+					\end{align*}
+					
+					\item Dimostriamo che l'inverso di  $(\alpha \boxdot v)$ è $\alpha \boxdot (-v)$ in $(V, \boxplus)$ \\
+					\begin{align*}
+						& (\alpha \boxdot v) \boxplus \boldsymbol{(\alpha \boxdot (-v))}  \\
+						& = \alpha \boxdot (v \boxplus (-v)) \motivo{Assioma 3 degli spazi vettoriali} \\
+						& = \alpha \boxdot 0_v \motivo{Dimostrato prima} \\
+						& = 0_v
+					\end{align*}
 				\end{itemize}
 				
+				\item Dunque sia $(\alpha \boxdot v) = (\beta \boxdot v)$ e $v \neq 0$ per ipotesi. Allora la seguente catena di equazioni risulta vera:
+				\begin{align*}
+					& (\alpha + (- \beta)) \boxdot v \\
+					& = (\alpha \boxdot v) \boxplus (- \beta \boxdot v) \motivo{Assioma 2 degli spazi vettoriali} \\
+					& = (\beta \boxdot v) \boxplus (- \beta \boxdot v) \\
+					& = 0_v \motivo{Dimostrato prima}
+				\end{align*}
+				Per ipotesi $v \neq 0$, dunque per il punto \textit{i)} si ha che necessariamente $(\alpha + (- \beta)) =  0$ e cioè che $\alpha = \beta$
+			
+				\item Omessa perché simile a \textit{iii)}
+			
 			\end{enumerate}
 		\end{proof}
 	\end{proposizione}
+	
+	Sia $\big((K,+,\cdot),\ (V,\boxplus),\ \boxdot\big)$ uno spazio vettoriale. Per brevità verrà detto che esso è uno spazio vettoriale $V$ su $K$.
+	
+	\textbf{Esempio:} Sia $K$ un campo. L'insieme $K^n$ è uno spazio vettoriale su $K$ con le seguenti operazioni:
+	\begin{itemize}
+		\item Somma di n-ple: Se $a = (a^1,...,a^n) \in K^n$ e $b = (b^1,..,b^n) \in K^n$ allora $$a+b = (a^1 + b^1,...,a^n+b^n)$$
+		\item Prodotto per scalare: se $\lambda \in K$ e $a = (a^1,\dots,a^n) \in K^n$, allora \[ \lambda a = (\lambda a^1,\dots,\lambda a^n). \]
+	\end{itemize}
+	
+	\textbf{Esempio:} Sia $K$ un campo. L'insieme $M_{m \times n}$ delle matrici è uno spazio vettoriale su $K$ con le solite operazioni matriciali
+	
+	\subsection{Sottospazi}
+	\begin{definizione}[4.3]
+		Sia $(K,V,+, \cdot)$ uno spazio vettoriale e $W$ un sottoinsieme non vuoto di $V$. Diremo che $W$ è linearmente chiuso se per ogni $\alpha \in K$ e per ogni $u,w \in W$ si ha che
+		\begin{itemize}
+			\item $u+w \in W$
+			\item $\alpha \cdot u \in W$
+		\end{itemize}
+		Se $W$ è linearmente chiuso allora è possibile restringere dominio e codominio delle operazioni definite su $V$ in modo da ottenere le seguenti operazioni:
+		$$+_w : W \times W \rightarrow W$$
+		$$\cdot_w : K \times W \rightarrow W$$
+	\end{definizione}
+	
+	\begin{definizione}[4.4]
+		Sia $(K,V,+,\cdot)$ uno spazio vettoriale e $W$ un sottoinsieme linearmente chiuso di $V$. Diremo che $W$ è un sottospazio vettoriale di $V$ se $(K, W, +_w, \cdot_w)$ è uno spazio vettoriale.
+	\end{definizione}
+	
+	\begin{proposizione}[4.5]
+		Se $(K,V,+, \cdot)$ è  uno spazio vettoriale
+	\end{proposizione}
+	
 	
 \end{document}
